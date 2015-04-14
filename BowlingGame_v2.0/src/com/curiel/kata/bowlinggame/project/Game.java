@@ -22,6 +22,21 @@ public class Game {
 		}
 	}
 
+	public int score() {
+		int score = 0;
+		for(int i = 0; i<frames.size(); i++){
+			if(isSpare(i))
+				score += getCurrentFramePines(i) + getSpareBonus(i);
+			else
+				score += getCurrentFramePines(i);
+		}			
+		return score;
+	}
+
+	private boolean isSpare(int i) {
+		return getCurrentFramePines(i) == 10;
+	}
+	
 	private boolean isNeededNewFrame() {
 		return currentRoll >= 2 || currentFrame == 1;
 	}
@@ -43,15 +58,20 @@ public class Game {
 		currentRoll = 1;
 	}
 
-	public int score() {
-		int score = 0;
-		for(int i = 0; i<frames.size(); i++){
-			if(frames.get(i).getTotalFallenPines() == 10)
-				score += frames.get(i).getTotalFallenPines() + frames.get(i+1).getFirstFallenPines();
-			else
-				score += frames.get(i).getTotalFallenPines();
-		}			
-		return score;
+	private int getCurrentFramePines(int i) {
+		return currentFrame(i).getTotalFallenPines();
+	}
+
+	private Frame currentFrame(int i) {
+		return frames.get(i);
+	}
+
+	private int getSpareBonus(int i) {
+		return nextFrame(i).getFirstFallenPines();
+	}
+
+	private Frame nextFrame(int i) {
+		return frames.get(i+1);
 	}
 
 }
