@@ -21,5 +21,12 @@ public class KataTesting {
 			game.roll(0);
 		assertEquals(0, game.score());
 	}
+	
+	@Test
+	public void allOneGame(){
+		for(int i = 1; i<=20; i++)
+			game.roll(1);
+		assertEquals(20, game.score());		
+	}
 
 }
