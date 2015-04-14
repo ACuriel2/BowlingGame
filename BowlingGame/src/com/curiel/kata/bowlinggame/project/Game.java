@@ -18,22 +18,39 @@ public class Game {
 		int currentRoll = 0;
 		for(int frame = 1; frame <= 10; frame ++){
 			if(isSpare(currentRoll)){
-				score += rolls[currentRoll + 2] + 10;
+				score += getSpareBonus(currentRoll) + 10;
 				currentRoll += 2;				
 			}
-			else if(rolls[currentRoll] == 10){
-				score += rolls[currentRoll + 2] + rolls[currentRoll + 1] + 10;
+			else if(isStrike(currentRoll)){
+				score += 10 + getStrikeBonus(currentRoll);
 				currentRoll += 1;
 			}
 			else{
-				score += rolls[currentRoll] + rolls[currentRoll + 1];			
+				score += getCurrentFramePines(currentRoll);			
 				currentRoll += 2;				
 			}			
 		}
 		return score;
 	}
 
-	private boolean isSpare(int currentRoll) {
-		return rolls[currentRoll] + rolls[currentRoll + 1] == 10;
+	private boolean isStrike(int currentRoll) {
+		return rolls[currentRoll] == 10;
 	}
+	
+	private boolean isSpare(int currentRoll) {
+		return getCurrentFramePines(currentRoll) == 10;
+	}
+
+	private int getStrikeBonus(int currentRoll) {
+		return rolls[currentRoll + 2] + rolls[currentRoll + 1];
+	}
+
+	private int getSpareBonus(int currentRoll) {
+		return rolls[currentRoll + 2];
+	}
+
+	private int getCurrentFramePines(int currentRoll) {
+		return rolls[currentRoll] + rolls[currentRoll + 1];
+	}
+
 }
