@@ -2,26 +2,35 @@ package com.curiel.kata.bowlinggame.testing;
 
 import static org.junit.Assert.*;
 
+import org.junit.Before;
 import org.junit.Test;
 
 import com.curiel.kata.bowlinggame.project.Game;
 
 public class KataTesting {
 
+	private Game game;
+	
+	@Before 
+	public void setup(){
+		game = new Game();
+	}
+
 	@Test
-	public void testGutterGame() {
-		Game game = new Game();
-		for(int i = 1; i<= 20; i++)
-			game.roll(0);
+	public void testGutterGame() {		
+		rollMany(0, 20);			
 		assertEquals(0, game.score());
 	}
 	
 	@Test
-	public void testAllOnesGame(){
-		Game game = new Game();
-		for(int i = 1; i<= 20; i++)
-			game.roll(1);
+	public void testAllOnesGame(){		
+		rollMany(1, 20);
 		assertEquals(20, game.score());
+	}
+
+	private void rollMany(int fallenPines, int rolls) {
+		for(int i = 1; i<= rolls; i++)
+			game.roll(fallenPines);
 	}
 
 }
