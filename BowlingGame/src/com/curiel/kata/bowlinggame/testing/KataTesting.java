@@ -42,6 +42,12 @@ public class KataTesting {
 		rollMany(16, 1);
 		assertEquals(40, game.score());
 	}
+	
+	@Test
+	public void testPerfectGame(){
+		rollMany(12, 10);
+		assertEquals(300, game.score());
+	}
 
 	private void assertSimilarRollSequence(int fallenPines, int expectedScore) {
 		rollMany(20, fallenPines);
