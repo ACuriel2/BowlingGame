@@ -26,6 +26,15 @@ public class KataTesting {
 		rollMany(1, 20);
 		assertEquals(20, game.score());
 	}
+	
+	@Test
+	public void testOneSpareGame(){
+		game.roll(4);
+		game.roll(6);
+		game.roll(4);
+		rollMany(0, 17);
+		assertEquals(18, game.score());
+	}
 
 	private void rollMany(int pines, int rolls) {
 		for(int i=1; i<=rolls; i++)
