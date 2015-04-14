@@ -17,13 +17,21 @@ public class Game {
 		int score = 0;
 		int rollIndex = 0;
 		for(int frame = 1; frame <= 10; frame++){
-			if((rolls[rollIndex] + rolls[rollIndex + 1]) == 10)
-				score += rolls[rollIndex] + rolls[rollIndex + 1] + rolls[rollIndex + 2];			
+			if(getCurrentFrameValue(rollIndex) == 10)
+				score += getCurrentFrameValue(rollIndex) + getSpareBonus(rollIndex);			
 			else
-				score+= rolls[rollIndex] + rolls[rollIndex + 1];
+				score+= getCurrentFrameValue(rollIndex);
 			rollIndex += 2;
 		}
 		return score;
+	}
+
+	private int getSpareBonus(int rollIndex) {
+		return rolls[rollIndex + 2];
+	}
+
+	private int getCurrentFrameValue(int rollIndex) {
+		return rolls[rollIndex] + rolls[rollIndex + 1];
 	}
 
 }

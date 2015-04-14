@@ -29,11 +29,15 @@ public class KataTesting {
 	
 	@Test
 	public void testOneSpareGame(){
-		game.roll(4);
-		game.roll(6);
+		rollSpare();
 		game.roll(4);
 		rollMany(0, 17);
 		assertEquals(18, game.score());
+	}
+
+	private void rollSpare() {
+		game.roll(4);
+		game.roll(6);
 	}
 
 	private void rollMany(int pines, int rolls) {
