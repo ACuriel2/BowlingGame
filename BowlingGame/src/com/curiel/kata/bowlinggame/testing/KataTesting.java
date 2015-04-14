@@ -35,9 +35,7 @@ public class KataTesting {
 	}
 
 	private void assertSimilarRollSequence(int fallenPines, int expectedScore) {
-		for(int i = 1; i<=20; i++) {
-			game.roll(fallenPines);
-		}
+		rollMany(20, fallenPines);
 		assertEquals(expectedScore, game.score());
 	}
 	
