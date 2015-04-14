@@ -15,8 +15,14 @@ public class Game {
 
 	public int score() {
 		int score = 0;
-		for(int pinesByRoll : rolls)
-			score+=pinesByRoll;
+		int rollIndex = 0;
+		for(int frame = 1; frame <= 10; frame++){
+			if((rolls[rollIndex] + rolls[rollIndex + 1]) == 10)
+				score += rolls[rollIndex] + rolls[rollIndex + 1] + rolls[rollIndex + 2];			
+			else
+				score+= rolls[rollIndex] + rolls[rollIndex + 1];
+			rollIndex += 2;
+		}
 		return score;
 	}
 
