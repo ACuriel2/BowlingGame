@@ -37,6 +37,15 @@ public class KataTesting {
 		assertEquals(14, game.score());
 		
 	}
+	
+	@Test
+	public void testOneStrikeGame(){
+		game.roll(10);
+		game.roll(2);
+		game.roll(2);
+		rollMany(0, 16);
+		assertEquals(18, game.score());
+	}
 
 	private void rollMany(int fallenPines, int rolls) {
 		for(int i = 1; i<= rolls; i++)

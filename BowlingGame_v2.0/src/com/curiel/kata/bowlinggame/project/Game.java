@@ -14,7 +14,7 @@ public class Game {
 		currentFrame = 1;
 	}
 
-	public void roll(int fallenPines) {
+	public void roll(int fallenPines) {		
 		if(isNeededNewFrame()){
 			createFrame(fallenPines);			
 		}else{
@@ -25,7 +25,9 @@ public class Game {
 	public int score() {
 		int score = 0;
 		for(int i = 0; i<frames.size(); i++){
-			if(isSpare(i))
+			if(currentFrame(i).getFirstFallenPines() == 10)
+				score += getCurrentFramePines(i) + nextFrame(i).getTotalFallenPines();
+			else if(isSpare(i))
 				score += getCurrentFramePines(i) + getSpareBonus(i);
 			else
 				score += getCurrentFramePines(i);
@@ -55,7 +57,7 @@ public class Game {
 		Frame frame = new Frame(currentFrame++);
 		frame.setFallenPines(fallenPines);
 		frames.add(frame);
-		currentRoll = 1;
+		currentRoll = fallenPines == 10 ? 2 : 1;
 	}
 
 	private int getCurrentFramePines(int i) {
