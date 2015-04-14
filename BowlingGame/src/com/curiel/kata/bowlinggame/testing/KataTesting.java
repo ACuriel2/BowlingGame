@@ -8,7 +8,7 @@ import org.junit.Test;
 import com.curiel.kata.bowlinggame.project.Game;
 
 public class KataTesting {
-private Game game;
+	private Game game;
 	
 	@Before
 	public void setup(){
@@ -17,15 +17,19 @@ private Game game;
 	
 	@Test
 	public void testGutterGame(){
-		for(int i = 1; i<=20; i++)
-			game.roll(0);
-		assertEquals(0, game.score());
+		assertSimilarRollSequence(0, 0);
 	}
 	
 	@Test
 	public void allOneGame(){
-		for(int i = 1; i<=20; i++)
-			game.roll(1);
-		assertEquals(20, game.score());		
+		assertSimilarRollSequence(1, 20);		
 	}
+
+	private void assertSimilarRollSequence(int fallenPines, int expectedScore) {
+		for(int i = 1; i<=20; i++) {
+			game.roll(fallenPines);
+		}
+		assertEquals(expectedScore, game.score());
+	}
+
 }
