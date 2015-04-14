@@ -8,7 +8,7 @@ import org.junit.Test;
 import com.curiel.kata.bowlinggame.project.Game;
 
 public class KataTesting {
-	private Game game;
+private Game game;
 	
 	@Before
 	public void setup(){
@@ -28,5 +28,4 @@ public class KataTesting {
 			game.roll(1);
 		assertEquals(20, game.score());		
 	}
-
 }
