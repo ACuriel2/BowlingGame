@@ -42,6 +42,12 @@ public class KataTesting {
 		rollMany(0, 16);
 		assertEquals(30, game.score());
 	}
+	
+	@Test
+	public void testPerfectGame(){
+		rollMany(10, 21);
+		assertEquals(300, game.score());
+	}
 
 	private void rollSpare() {
 		game.roll(4);
