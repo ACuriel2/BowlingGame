@@ -33,6 +33,15 @@ public class KataTesting {
 		rollMany(17, 1);
 		assertEquals(31, game.score());
 	}
+	
+	@Test
+	public void testOneStrike(){
+		game.roll(10);
+		game.roll(3);
+		game.roll(4);
+		rollMany(16, 1);
+		assertEquals(40, game.score());
+	}
 
 	private void assertSimilarRollSequence(int fallenPines, int expectedScore) {
 		rollMany(20, fallenPines);
