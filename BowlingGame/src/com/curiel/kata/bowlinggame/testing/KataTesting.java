@@ -27,16 +27,16 @@ public class KataTesting {
 	
 	@Test
 	public void testOneSpare(){
-		game.roll(5);
-		game.roll(5);
+		rollSpare();
 		game.roll(2);
 		rollMany(17, 1);
 		assertEquals(31, game.score());
 	}
+
 	
 	@Test
 	public void testOneStrike(){
-		game.roll(10);
+		rollStrike();
 		game.roll(3);
 		game.roll(4);
 		rollMany(16, 1);
@@ -52,5 +52,13 @@ public class KataTesting {
 		for(int i = 1; i <= rolls; i++)
 			game.roll(fallenPines);
 	}
+	
+	private void rollStrike() {
+		game.roll(10);
+	}
 
+	private void rollSpare() {
+		game.roll(5);
+		game.roll(5);
+	}
 }
