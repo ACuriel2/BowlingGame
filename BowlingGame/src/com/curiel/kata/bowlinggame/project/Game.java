@@ -17,8 +17,18 @@ public class Game {
 		int score = 0;
 		int currentRoll = 0;
 		for(int frame = 1; frame <= 10; frame ++){
-			score += getFallenPinesInFrame(currentRoll);			
-			currentRoll += 2;		
+			if(isSpare(currentRoll)){
+				score += rolls[currentRoll + 2] + 10;
+				currentRoll += 2;				
+			}
+			else if(rolls[currentRoll] == 10){
+				score += rolls[currentRoll + 2] + rolls[currentRoll + 1] + 10;
+				currentRoll += 1;
+			}
+			else{
+				score += rolls[currentRoll] + rolls[currentRoll + 1];			
+				currentRoll += 2;				
+			}			
 		}
 		return score;
 	}
@@ -26,15 +36,4 @@ public class Game {
 	private boolean isSpare(int currentRoll) {
 		return rolls[currentRoll] + rolls[currentRoll + 1] == 10;
 	}
-	
-	private int getFallenPinesInFrame(int currentRoll){
-		int totalFallenPines = 0;
-		if(isSpare(currentRoll))
-			totalFallenPines += rolls[currentRoll + 2] + 10;			
-		else
-			totalFallenPines += rolls[currentRoll] + rolls[currentRoll + 1];
-		return totalFallenPines;
-	}
-
-
 }
