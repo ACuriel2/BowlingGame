@@ -24,12 +24,26 @@ public class KataTesting {
 	public void allOneGame(){
 		assertSimilarRollSequence(1, 20);		
 	}
+	
+	@Test
+	public void testOneSpare(){
+		game.roll(5);
+		game.roll(5);
+		game.roll(2);
+		rollMany(17, 1);
+		assertEquals(31, game.score());
+	}
 
 	private void assertSimilarRollSequence(int fallenPines, int expectedScore) {
 		for(int i = 1; i<=20; i++) {
 			game.roll(fallenPines);
 		}
 		assertEquals(expectedScore, game.score());
+	}
+	
+	private void rollMany(int rolls, int fallenPines){
+		for(int i = 1; i <= rolls; i++)
+			game.roll(fallenPines);
 	}
 
 }
