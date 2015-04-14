@@ -30,23 +30,31 @@ public class KataTesting {
 	
 	@Test
 	public void testOneSpareGame(){
-		game.roll(6);
-		game.roll(4);
+		rollSpare();
 		game.roll(2);
 		rollMany(0, 17);
 		assertEquals(14, game.score());
 		
 	}
-	
+
 	@Test
 	public void testOneStrikeGame(){
-		game.roll(10);
+		rollStrike();
 		game.roll(2);
 		game.roll(2);
 		rollMany(0, 16);
 		assertEquals(18, game.score());
 	}
 
+	private void rollStrike() {
+		game.roll(10);
+	}
+
+	private void rollSpare() {
+		game.roll(6);
+		game.roll(4);
+	}
+	
 	private void rollMany(int fallenPines, int rolls) {
 		for(int i = 1; i<= rolls; i++)
 			game.roll(fallenPines);
